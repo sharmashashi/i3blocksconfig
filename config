@@ -26,7 +26,7 @@
 # Each block command defaults to the script name to avoid boilerplate.
 # Change $SCRIPT_DIR to the location of your scripts!
 command=/home/shashi/.config/i3blocks/$BLOCK_NAME/$BLOCK_NAME
-separator_block_width=15
+separator_block_width=20
 markup=none
 
 
@@ -76,10 +76,12 @@ interval=1
 #color_critical=#FF7373
 #color_warning=#FFA500
 
-#[gpu-load]
-#label=GPU
-#interval=5
+[gpu-load]
+command=nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader,nounits 2>/dev/null | awk -F', ' '{ print $1 " / " $2 " MiB" }' || echo "None"
+label=GPU
+interval=1
 #min_width=GPU 100% 100% 100% 100%
+#GPU_BRAND=NVIDIA 
 #T_WARN=70
 #T_CRIT=90
 
@@ -135,13 +137,13 @@ interval=1
 # see the script for details.
 [cpu_usage]
 label=CPU
-interval=10
+interval=1
 min_width=CPU 100.00%
 #separator=false
 
-[load_average]
-label=LOAD
-interval=10
+#[load_average]
+#label=LOAD
+#interval=10
 
 
 # Generic media player support
